@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>אפליקציית ניתוח אקלים</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/recharts/2.5.0/recharts.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>ניתוח אקלים</h1>
+        
+        <input type="file" id="fileUpload" accept=".csv" class="mb-4">
+        
+        <div class="mb-4">
+            <select id="analysisType" class="mr-2">
+                <option value="TX">TX (טמפ' מקסימום)</option>
+                <option value="TN">TN (טמפ' מינימום)</option>
+                <option value="TM">TM (טמפ' ממוצעת)</option>
+            </select>
+            <select id="periodType" class="mr-2">
+                <option value="year">שנה</option>
+                <option value="season">עונה</option>
+                <option value="month">חודש</option>
+            </select>
+            <select id="calculationType" class="mr-2">
+                <option value="aboveThreshold">ימים מעל הסף</option>
+                <option value="belowThreshold">ימים מתחת לסף</option>
+                <option value="average">טמפרטורה ממוצעת</option>
+            </select>
+        </div>
+        
+        <div id="seasonMonthSelector" class="mb-4" style="display: none;">
+            <select id="seasonMonth" class="mr-2">
+                <!-- אפשרויות יתווספו דינמית ב-JavaScript -->
+            </select>
+        </div>
+        
+        <div class="mb-4">
+            <label>סף (°C):</label>
+            <input type="range" id="threshold" min="-10" max="50" value="0" class="mx-2">
+            <span id="thresholdValue">0°C</span>
+        </div>
+        
+        <div class="mb-4">
+            <label>שנת התחלה:</label>
+            <input type="number" id="startYear" value="2000" class="mr-4">
+            <label>שנת סיום:</label>
+            <input type="number" id="endYear" value="2020">
+        </div>
+        
+        <div id="error" class="text-red-500 mb-4"></div>
+        
+        <div id="chart" style="width: 100%; height: 400px;"></div>
+        
+        <button id="downloadData" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded">הורד נתוני תרשים</button>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
